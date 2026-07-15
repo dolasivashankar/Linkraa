@@ -149,22 +149,26 @@ export default function MediaPreviewCard({ item, onToggleFavorite, onDownloadCom
       const blob = new Blob(chunks as any, { type: response.headers.get('Content-Type') || undefined });
       const downloadBlobUrl = URL.createObjectURL(blob);
 
-      // Create download trigger element
-      const downloadLink = document.createElement('a');
-      downloadLink.href = downloadBlobUrl;
+      // Trigger download
+      const a = document.createElement('a');
+      a.href = downloadBlobUrl;
       
-      const fileExt = selectedFormat.ext || 'mp4';
-      let cleanFilename = item.title;
-      if (!cleanFilename.endsWith(`.${fileExt}`)) {
-        cleanFilename = `${cleanFilename}.${fileExt}`;
+      let safeTitle = item.title.replace(/[^a-zA-Z0-9 \-_]/g, '').trim() || 'linkraa_media';
+      let finalFilename = safeTitle;
+      
+      if (selectedFormat.id === 'audio_only') {
+        finalFilename = safeTitle + '.m4a';
+      } else {
+        // Ensure it ends with the proper extension
+        if (!finalFilename.toLowerCase().endsWith(`.${selectedFormat.ext}`)) {
+          finalFilename = `${safeTitle}_${selectedFormat.id}.${selectedFormat.ext}`;
+        }
       }
-
-      downloadLink.download = cleanFilename;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
       
-      // Cleanup
-      document.body.removeChild(downloadLink);
+      a.download = finalFilename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
       URL.revokeObjectURL(downloadBlobUrl);
 
       setDownloadState('completed');

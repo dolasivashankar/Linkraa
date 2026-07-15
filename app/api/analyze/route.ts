@@ -207,7 +207,7 @@ export async function POST(req: NextRequest) {
             ext: 'mp4',
             size: 45 * 1024 * 1024, // Mock 45 MB
             type: 'video',
-            downloadUrl: `/api/proxy?url=${encodeURIComponent('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4')}&name=${encodeURIComponent(baseName + '_1080p.mp4')}`,
+            downloadUrl: `/api/proxy?url=${encodeURIComponent('https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4')}&name=${encodeURIComponent(baseName + '_1080p.mp4')}`,
           });
           formats.push({
             id: '720p',
@@ -215,7 +215,7 @@ export async function POST(req: NextRequest) {
             ext: 'mp4',
             size: 24 * 1024 * 1024, // Mock 24 MB
             type: 'video',
-            downloadUrl: `/api/proxy?url=${encodeURIComponent('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4')}&name=${encodeURIComponent(baseName + '_720p.mp4')}`,
+            downloadUrl: `/api/proxy?url=${encodeURIComponent('https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4')}&name=${encodeURIComponent(baseName + '_720p.mp4')}`,
           });
           formats.push({
             id: '480p',
@@ -223,7 +223,7 @@ export async function POST(req: NextRequest) {
             ext: 'mp4',
             size: 12 * 1024 * 1024, // Mock 12 MB
             type: 'video',
-            downloadUrl: `/api/proxy?url=${encodeURIComponent('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4')}&name=${encodeURIComponent(baseName + '_480p.mp4')}`,
+            downloadUrl: `/api/proxy?url=${encodeURIComponent('https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4')}&name=${encodeURIComponent(baseName + '_480p.mp4')}`,
           });
           formats.push({
             id: 'mp3_320',
